@@ -23,37 +23,42 @@ kotlin {
         }
     }
 
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-        compilations["main"].dependencies {
-            implementation(project(":jni:jvm:all"))
-        }
-        compilations["test"].dependencies {
-            implementation(kotlin("test-junit"))
-        }
-    }
+//    jvm {
+//        compilations.all {
+//            kotlinOptions.jvmTarget = "1.8"
+//        }
+//        compilations["main"].dependencies {
+//            implementation(project(":jni:jvm:all"))
+//        }
+//        compilations["test"].dependencies {
+//            implementation(kotlin("test-junit"))
+//        }
+//    }
 
-    if (includeAndroid) {
-        android {
-            compilations.all {
-                kotlinOptions.jvmTarget = "1.8"
-            }
-            sourceSets["androidMain"].dependencies {
-                implementation(project(":jni:android"))
-            }
-            sourceSets["androidTest"].dependencies {
-                implementation(kotlin("test-junit"))
-                implementation("androidx.test.ext:junit:1.1.2")
-                implementation("androidx.test.espresso:espresso-core:3.3.0")
-            }
-        }
-    }
+//    if (includeAndroid) {
+//        android {
+//            compilations.all {
+//                kotlinOptions.jvmTarget = "1.8"
+//            }
+//            sourceSets["androidMain"].dependencies {
+//                implementation(project(":jni:android"))
+//            }
+//            sourceSets["androidTest"].dependencies {
+//                implementation(kotlin("test-junit"))
+//                implementation("androidx.test.ext:junit:1.1.2")
+//                implementation("androidx.test.espresso:espresso-core:3.3.0")
+//            }
+//        }
+//    }
 
     linuxX64("linux")
 
-    ios()
+    iosArm64()
+    iosSimulatorArm64()
+    macosArm64()
+    macosX64()
+    watchosArm64()
+    tvosArm64()
 }
 
 val includeAndroid = System.getProperty("includeAndroid")?.toBoolean() ?: true
